@@ -9,27 +9,27 @@ The generator will generate the fake transactions and send to the kakfa topic qu
 
 ### Steps to execute
 
-create a docker network (kafka-network1) for the containers to communicate
+1. create a docker network (kafka-network1) for the containers to communicate
 
 docker network create kafka-network1
 
-create a container for kafka cluster in undetached mode:
+2. create a container for kafka cluster in undetached mode:
 
 docker-compose -f docker-compose.kafka.yml up
  
-create a container for generator and detector application 
+3. create a container for generator and detector application 
 
 docker-compose -f docker-compose.yml up
  
-To verify the queueing.transactions transactions:
+4. To verify the queueing.transactions transactions:
 
 docker-compose -f docker-compose.kafka.yml exec broker kafka-console-consumer --bootstrap-server localhost:9092 --topic queueing.transactions --from-beginning
 
-To verify the streaming.transactions.legit transactions:
+5. To verify the streaming.transactions.legit transactions:
 
 docker-compose -f docker-compose.kafka.yml exec broker kafka-console-consumer --bootstrap-server localhost:9092 --topic streaming.transactions.legit
 
-To verify the streaming.transactions.fraud transactions:
+6. To verify the streaming.transactions.fraud transactions:
 
 docker-compose -f docker-compose.kafka.yml exec broker kafka-console-consumer --bootstrap-server localhost:9092 --topic streaming.transactions.fraud
 
